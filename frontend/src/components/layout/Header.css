@@ -1,0 +1,120 @@
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 40;
+  height: var(--header-h);
+  transition: background 0.35s var(--ease-out), backdrop-filter 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out);
+  border-bottom: 1px solid transparent;
+}
+
+.site-header.is-solid {
+  background: rgba(28, 46, 34, 0.82);
+  backdrop-filter: blur(16px);
+  border-bottom-color: var(--line);
+}
+
+.site-header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-nav {
+  display: none;
+  margin-left: auto;
+  gap: 0.2rem;
+}
+
+.site-nav a {
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  color: rgba(243, 240, 232, 0.78);
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.is-active {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.header-cta {
+  display: none;
+}
+
+.nav-toggle {
+  margin-left: auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-toggle span {
+  display: block;
+  width: 1.05rem;
+  height: 1.5px;
+  background: var(--cream);
+  transition: transform 0.3s var(--ease-out), opacity 0.3s ease;
+}
+
+.nav-toggle.is-open span:first-child {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:last-child {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+.mobile-nav {
+  position: absolute;
+  inset: var(--header-h) 0 auto;
+  padding: 1.2rem 1.25rem 1.6rem;
+  background: rgba(20, 32, 24, 0.96);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.mobile-nav nav {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 0.95rem 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 680;
+  letter-spacing: -0.03em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-nav .btn-wrap-fill {
+  margin-top: 1.35rem;
+}
+
+.mobile-cta {
+  width: 100%;
+  justify-content: center;
+  min-height: 3.15rem;
+}
+
+@media (min-width: 920px) {
+  .site-nav,
+  .header-cta {
+    display: flex;
+  }
+
+  .nav-toggle,
+  .mobile-nav {
+    display: none;
+  }
+}
