@@ -1,0 +1,59 @@
+.page-hero {
+  position: relative;
+  min-height: min(78vh, 760px);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.page-hero-media {
+  position: absolute;
+  inset: -8% 0 0;
+  z-index: -1;
+}
+
+.page-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(28, 46, 34, 0.18) 0%, rgba(28, 46, 34, 0.42) 40%, rgba(20, 32, 24, 0.88) 100%),
+    radial-gradient(700px 360px at 75% 20%, rgba(61, 97, 68, 0.28), transparent 60%);
+}
+
+.page-hero-content {
+  padding: calc(var(--header-h) + 4.5rem) 0 4.5rem;
+}
+
+.page-hero-title {
+  margin: 0.85rem 0 1.1rem;
+  font-size: clamp(2.6rem, 8vw, 5.2rem);
+  max-width: 11ch;
+  color: var(--white);
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.page-hero .lead {
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+}
+
+.page-hero-actions {
+  margin-top: 1.6rem;
+}
+
+@media (max-width: 720px) {
+  .page-hero {
+    min-height: min(86vh, 680px);
+  }
+
+  .page-hero-content {
+    padding-bottom: 3.2rem;
+  }
+}
