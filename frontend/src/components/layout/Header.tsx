@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { Logo } from '../brand/Logo'
 import { Button } from '../ui/Button'
 import { navLinks } from '../../data/site'
@@ -57,7 +57,7 @@ export function Header() {
 
       <AnimatePresence>
         {open ? (
-          <motion.div
+          <m.div
             className="mobile-nav"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export function Header() {
           >
             <nav aria-label="Mobile">
               {navLinks.map((link, i) => (
-                <motion.div
+                <m.div
                   key={link.to}
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -75,7 +75,7 @@ export function Header() {
                   <NavLink to={link.to} onClick={() => setOpen(false)}>
                     {link.label}
                   </NavLink>
-                </motion.div>
+                </m.div>
               ))}
             </nav>
             <Button
@@ -86,7 +86,7 @@ export function Header() {
             >
               Book a visit
             </Button>
-          </motion.div>
+          </m.div>
         ) : null}
       </AnimatePresence>
     </header>

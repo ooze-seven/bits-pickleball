@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import type { ReactNode } from 'react'
 import './Button.css'
 
@@ -28,7 +28,7 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
 
   if ('to' in props && props.to) {
     return (
-      <motion.div
+      <m.div
         className={`btn-wrap ${className.includes('mobile-cta') ? 'btn-wrap-fill' : ''}`.trim()}
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.98 }}
@@ -37,12 +37,12 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
           <span>{children}</span>
           <span className="btn-sheen" aria-hidden="true" />
         </Link>
-      </motion.div>
+      </m.div>
     )
   }
 
   return (
-    <motion.button
+    <m.button
       type={props.type ?? 'button'}
       className={classes}
       onClick={onClick}
@@ -51,6 +51,6 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
     >
       <span>{children}</span>
       <span className="btn-sheen" aria-hidden="true" />
-    </motion.button>
+    </m.button>
   )
 }

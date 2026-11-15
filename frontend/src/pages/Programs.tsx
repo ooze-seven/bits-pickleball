@@ -3,6 +3,7 @@ import { Button } from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
 import { IconCoaching, IconCommunity, IconCourt } from '../components/icons/AnimatedIcons'
 import { programs } from '../data/site'
+import { images } from '../data/images'
 import './pages.css'
 
 const extras = [
@@ -30,7 +31,7 @@ export function Programs() {
         eyebrow="Programs"
         title="Practice with purpose."
         lead="From walk-in open play to private coaching in Compostela — every session is designed to leave your game cleaner than it arrived."
-        image="/images/coaching-session.jpg?v=fil"
+        image={images.coachingSession}
         imageAlt="Coach working with players on court"
         actions={
           <>
@@ -50,7 +51,7 @@ export function Programs() {
             {programs.map((program, i) => (
               <Reveal key={program.id} delay={0.08 * i}>
                 <article className="program-card">
-                  <img src={program.image} alt="" />
+                  <img {...program.image} alt="" />
                   <div className="program-card-shade" />
                   <div className="program-card-body">
                     <span>{program.detail}</span>
@@ -89,7 +90,7 @@ export function Programs() {
       <section className="section">
         <div className="container split">
           <Reveal className="split-media">
-            <img src="/images/players-rally.jpg?v=fil" alt="Two players in a mid-rally exchange" />
+            <img {...images.playersRally} alt="Two players in a mid-rally exchange" />
           </Reveal>
           <Reveal className="split-copy" delay={0.1}>
             <p className="eyebrow">Private coaching</p>

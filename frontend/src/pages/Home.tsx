@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { m, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
@@ -10,6 +10,7 @@ import {
   IconSpark,
 } from '../components/icons/AnimatedIcons'
 import { programs } from '../data/site'
+import { brand, images } from '../data/images'
 import './pages.css'
 
 export function Home() {
@@ -24,33 +25,33 @@ export function Home() {
   return (
     <>
       <section className="home-hero" ref={heroRef}>
-        <motion.div className="home-hero-media" style={{ y: mediaY }}>
+        <m.div className="home-hero-media" style={{ y: mediaY }}>
           <img
-            src="/images/hero-court.jpg"
+            {...images.heroCourt}
             alt="Outdoor pickleball court at golden hour"
           />
           <div className="home-hero-shade" />
-        </motion.div>
+        </m.div>
 
-        <motion.div className="container home-hero-content" style={{ opacity: contentOpacity }}>
-          <motion.img
+        <m.div className="container home-hero-content" style={{ opacity: contentOpacity }}>
+          <m.img
             className="home-brand-wordmark"
-            src="/brand/wordmark-transparent.png?v=2"
+            {...brand.wordmark}
             alt="BitsPickleball"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           />
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
             Courts with a signal.
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             className="lead"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,9 +59,9 @@ export function Home() {
           >
             A forest-green clubhouse in Hi-ka, Compostela, Cebu — for open play, coaching, and
             nights that stretch past the last point.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             className="btn-row"
             style={{ marginTop: '1.6rem' }}
             initial={{ opacity: 0, y: 16 }}
@@ -73,8 +74,8 @@ export function Home() {
             <Button to="/courts" variant="ghost">
               See the courts
             </Button>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </section>
 
       <section className="section">
@@ -121,7 +122,7 @@ export function Home() {
       <section className="section light-surface">
         <div className="container split">
           <Reveal className="split-media">
-            <img src="/images/courts-overview.jpg" alt="Multiple outdoor pickleball courts" />
+            <img {...images.courtsOverview} alt="Multiple outdoor pickleball courts" />
           </Reveal>
           <Reveal className="split-copy" delay={0.1}>
             <p className="eyebrow">Courts</p>
@@ -166,7 +167,7 @@ export function Home() {
             {programs.map((program, i) => (
               <Reveal key={program.id} delay={0.08 * i}>
                 <article className="program-card">
-                  <img src={program.image} alt="" />
+                  <img {...program.image} alt="" />
                   <div className="program-card-shade" />
                   <div className="program-card-body">
                     <span>{program.detail}</span>
@@ -232,7 +233,7 @@ export function Home() {
         <div className="container split reverse">
           <Reveal className="split-media">
             <img
-              src="/images/community-celebrate.jpg?v=fil"
+              {...images.communityCelebrate}
               alt="Players celebrating a point together"
             />
           </Reveal>

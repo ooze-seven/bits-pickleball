@@ -3,14 +3,14 @@
   inset: 0 0 auto;
   z-index: 40;
   height: var(--header-h);
-  transition: background 0.35s var(--ease-out), backdrop-filter 0.35s var(--ease-out),
-    border-color 0.35s var(--ease-out);
+  transition: background 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
   border-bottom: 1px solid transparent;
 }
 
 .site-header.is-solid {
-  background: rgba(28, 46, 34, 0.82);
-  backdrop-filter: blur(16px);
+  /* Mostly opaque with a light blur: a big blur re-renders on every scroll frame. */
+  background: rgba(28, 46, 34, 0.92);
+  backdrop-filter: blur(6px);
   border-bottom-color: var(--line);
 }
 
@@ -77,9 +77,9 @@
   position: absolute;
   inset: var(--header-h) 0 auto;
   padding: 1.2rem 1.25rem 1.6rem;
+  /* At 0.96 opacity a blur behind it is barely visible, so it is left out. */
   background: rgba(20, 32, 24, 0.96);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(18px);
 }
 
 .mobile-nav nav {

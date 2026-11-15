@@ -3,6 +3,7 @@ import { Button } from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
 import { IconMembership } from '../components/icons/AnimatedIcons'
 import { membershipTiers, walkInRates } from '../data/site'
+import { images } from '../data/images'
 import './pages.css'
 
 export function Membership() {
@@ -12,7 +13,7 @@ export function Membership() {
         eyebrow="Membership"
         title="Pick your rhythm."
         lead="Peso pricing for Compostela players — flexible passes, full club access, and pro lanes for the competitive set."
-        image="/images/member-portrait.jpg?v=fil"
+        image={images.memberPortrait}
         imageAlt="Member smiling with paddle after a match"
         actions={
           <Button to="/contact" variant="primary">
@@ -103,7 +104,7 @@ export function Membership() {
       <section className="section light-surface">
         <div className="container split">
           <Reveal className="split-media">
-            <img src="/images/club-entrance.jpg" alt="Modern club entrance pathway" />
+            <img {...images.clubEntrance} alt="Modern club entrance pathway" />
           </Reveal>
           <Reveal className="split-copy" delay={0.1}>
             <p className="eyebrow">Included for all members</p>

@@ -28,6 +28,25 @@
   border-radius: 50%;
   border: 1.5px solid rgba(255, 255, 255, 0.7);
   pointer-events: none;
+  animation: logo-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.05;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-mark-pulse {
+    animation: none;
+  }
 }
 
 .brand-wordmark-img {

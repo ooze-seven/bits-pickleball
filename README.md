@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="frontend/public/brand/wordmark-transparent.png" alt="BitsPickleball" width="420" />
+  <img src="frontend/assets-src/brand/wordmark-transparent.png" alt="BitsPickleball" width="420" />
 </p>
 
 <h1 align="center">BitsPickleball</h1>
@@ -86,8 +86,9 @@
 ```text
 bits-pickleball/
 ├── frontend/          React + TypeScript (Vite)
-│   ├── public/        Brand assets + photography
-│   └── src/           Pages, layout, icons, styles
+│   ├── assets-src/    Original photos + brand art (run `npm run images` after changes)
+│   ├── public/        Static files served as-is
+│   └── src/           Pages, layout, icons, styles; optimized images in src/assets/
 ├── backend/           API placeholder
 └── docs/screenshots/  README previews captured from the live app
 ```

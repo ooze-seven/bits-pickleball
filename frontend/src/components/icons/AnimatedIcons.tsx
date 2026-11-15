@@ -1,8 +1,35 @@
-import { motion } from 'framer-motion'
-import type { SVGProps } from 'react'
+import { m } from 'framer-motion'
+import type { CSSProperties, SVGProps } from 'react'
 import './AnimatedIcons.css'
 
 type IconProps = SVGProps<SVGSVGElement> & { title?: string }
+
+/**
+ * Settings for the looping CSS animations in AnimatedIcons.css. Infinite loops run
+ * as CSS so the browser animates them off the main thread instead of framer
+ * updating SVG attributes every frame.
+ */
+type LoopVars = {
+  /** Duration in seconds. */
+  d: number
+  /** Start delay in seconds. */
+  delay?: number
+  /** Peak scale (ai-scale, ai-scale-fade). */
+  s?: number
+  /** Resting scale (ai-scale-fade). */
+  s0?: number
+  /** Resting opacity (ai-fade, ai-scale-fade). */
+  o0?: number
+}
+
+const loop = ({ d, delay = 0, s, s0, o0 }: LoopVars): CSSProperties =>
+  ({
+    '--d': `${d}s`,
+    '--delay': `${delay}s`,
+    ...(s === undefined ? {} : { '--s': s }),
+    ...(s0 === undefined ? {} : { '--s0': s0 }),
+    ...(o0 === undefined ? {} : { '--o0': o0 }),
+  }) as CSSProperties
 
 const base = {
   fill: 'none',
@@ -16,7 +43,7 @@ export function IconCourt({ title = 'Courts', ...props }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
       <title>{title}</title>
-      <motion.rect
+      <m.rect
         x="6"
         y="8"
         width="36"
@@ -28,7 +55,7 @@ export function IconCourt({ title = 'Courts', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.9, ease: 'easeOut' }}
       />
-      <motion.line
+      <m.line
         x1="24"
         y1="8"
         x2="24"
@@ -39,7 +66,7 @@ export function IconCourt({ title = 'Courts', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.25 }}
       />
-      <motion.rect
+      <m.rect
         x="14"
         y="18"
         width="20"
@@ -51,14 +78,14 @@ export function IconCourt({ title = 'Courts', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.45, delay: 0.4 }}
       />
-      <motion.circle
+      <circle
         cx="24"
         cy="24"
         r="2.2"
         fill="currentColor"
         stroke="none"
-        animate={{ scale: [1, 1.25, 1] }}
-        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+        className="ai-loop ai-scale"
+        style={loop({ d: 2.2, s: 1.25 })}
       />
     </svg>
   )
@@ -68,7 +95,7 @@ export function IconCoaching({ title = 'Coaching', ...props }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
       <title>{title}</title>
-      <motion.path
+      <m.path
         d="M16 34c2.5-4 6-6 8-6s5.5 2 8 6"
         {...base}
         initial={{ pathLength: 0 }}
@@ -76,7 +103,7 @@ export function IconCoaching({ title = 'Coaching', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       />
-      <motion.circle
+      <m.circle
         cx="24"
         cy="18"
         r="5"
@@ -86,7 +113,7 @@ export function IconCoaching({ title = 'Coaching', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ type: 'spring', stiffness: 260, damping: 16, delay: 0.15 }}
       />
-      <motion.path
+      <m.path
         d="M33 14l4-3m0 0l-1.5 4.5L39 17"
         {...base}
         initial={{ opacity: 0, x: -4 }}
@@ -96,14 +123,14 @@ export function IconCoaching({ title = 'Coaching', ...props }: IconProps) {
         animate={{ rotate: [0, 8, 0] }}
         style={{ transformOrigin: '33px 14px' }}
       />
-      <motion.circle
+      <circle
         cx="37"
         cy="11"
         r="1.4"
         fill="currentColor"
         stroke="none"
-        animate={{ y: [0, -2, 0] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+        className="ai-loop ai-bob"
+        style={loop({ d: 1.8 })}
       />
     </svg>
   )
@@ -113,7 +140,7 @@ export function IconCommunity({ title = 'Community', ...props }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
       <title>{title}</title>
-      <motion.circle
+      <m.circle
         cx="18"
         cy="18"
         r="4.2"
@@ -123,7 +150,7 @@ export function IconCommunity({ title = 'Community', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.45 }}
       />
-      <motion.circle
+      <m.circle
         cx="30"
         cy="18"
         r="4.2"
@@ -133,7 +160,7 @@ export function IconCommunity({ title = 'Community', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.45, delay: 0.1 }}
       />
-      <motion.path
+      <m.path
         d="M10 34c1.5-5 4.8-8 8-8s6.5 3 8 8"
         {...base}
         initial={{ pathLength: 0 }}
@@ -141,7 +168,7 @@ export function IconCommunity({ title = 'Community', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2 }}
       />
-      <motion.path
+      <m.path
         d="M22 34c1.5-5 4.8-8 8-8s6.5 3 8 8"
         {...base}
         initial={{ pathLength: 0 }}
@@ -149,14 +176,14 @@ export function IconCommunity({ title = 'Community', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.3 }}
       />
-      <motion.circle
+      <circle
         cx="24"
         cy="26"
         r="1.6"
         fill="currentColor"
         stroke="none"
-        animate={{ scale: [1, 1.35, 1], opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 2.4, repeat: Infinity }}
+        className="ai-loop ai-scale-fade"
+        style={loop({ d: 2.4, s: 1.35, o0: 0.7 })}
       />
     </svg>
   )
@@ -166,7 +193,7 @@ export function IconClock({ title = 'Hours', ...props }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
       <title>{title}</title>
-      <motion.circle
+      <m.circle
         cx="24"
         cy="24"
         r="14"
@@ -176,27 +203,25 @@ export function IconClock({ title = 'Hours', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       />
-      <motion.line
+      <line
         x1="24"
         y1="24"
         x2="24"
         y2="16"
         {...base}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-        style={{ transformOrigin: '24px 24px' }}
+        className="ai-clock-hand"
+        style={loop({ d: 8 })}
       />
-      <motion.line
+      <line
         x1="24"
         y1="24"
         x2="30"
         y2="27"
         {...base}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 48, repeat: Infinity, ease: 'linear' }}
-        style={{ transformOrigin: '24px 24px' }}
+        className="ai-clock-hand"
+        style={loop({ d: 48 })}
       />
-      <motion.circle cx="24" cy="24" r="1.8" fill="currentColor" stroke="none" />
+      <circle cx="24" cy="24" r="1.8" fill="currentColor" stroke="none" />
     </svg>
   )
 }
@@ -205,7 +230,7 @@ export function IconPin({ title = 'Location', ...props }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
       <title>{title}</title>
-      <motion.path
+      <m.path
         d="M24 8c-7 0-12 5.2-12 12.2C12 29 24 40 24 40s12-11 12-19.8C36 13.2 31 8 24 8z"
         {...base}
         initial={{ pathLength: 0, opacity: 0.4 }}
@@ -213,23 +238,22 @@ export function IconPin({ title = 'Location', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 1 }}
       />
-      <motion.circle
+      <circle
         cx="24"
         cy="20"
         r="4"
         {...base}
-        animate={{ scale: [1, 1.12, 1] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ transformOrigin: '24px 20px' }}
+        className="ai-loop ai-scale"
+        style={loop({ d: 2, s: 1.12 })}
       />
-      <motion.circle
+      <circle
         cx="24"
         cy="40"
         r="1.5"
         fill="currentColor"
         stroke="none"
-        animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
-        transition={{ duration: 2.2, repeat: Infinity }}
+        className="ai-loop ai-scale-fade"
+        style={loop({ d: 2.2, s: 1.2, s0: 0.8, o0: 0.3 })}
       />
     </svg>
   )
@@ -239,7 +263,7 @@ export function IconMembership({ title = 'Membership', ...props }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
       <title>{title}</title>
-      <motion.rect
+      <m.rect
         x="8"
         y="14"
         width="32"
@@ -251,7 +275,7 @@ export function IconMembership({ title = 'Membership', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       />
-      <motion.line
+      <m.line
         x1="8"
         y1="22"
         x2="40"
@@ -262,32 +286,32 @@ export function IconMembership({ title = 'Membership', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       />
-      <motion.circle
+      <circle
         cx="16"
         cy="29"
         r="1.6"
         fill="currentColor"
         stroke="none"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1.6, repeat: Infinity }}
+        className="ai-loop ai-fade"
+        style={loop({ d: 1.6, o0: 0.4 })}
       />
-      <motion.circle
+      <circle
         cx="22"
         cy="29"
         r="1.6"
         fill="currentColor"
         stroke="none"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1.6, repeat: Infinity, delay: 0.25 }}
+        className="ai-loop ai-fade"
+        style={loop({ d: 1.6, delay: 0.25, o0: 0.4 })}
       />
-      <motion.circle
+      <circle
         cx="28"
         cy="29"
         r="1.6"
         fill="currentColor"
         stroke="none"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1.6, repeat: Infinity, delay: 0.5 }}
+        className="ai-loop ai-fade"
+        style={loop({ d: 1.6, delay: 0.5, o0: 0.4 })}
       />
     </svg>
   )
@@ -297,7 +321,7 @@ export function IconSpark({ title = 'Signal', ...props }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
       <title>{title}</title>
-      <motion.path
+      <m.path
         d="M10 24h6l3-8 5 16 4-10 3 6h7"
         {...base}
         initial={{ pathLength: 0 }}
@@ -305,23 +329,23 @@ export function IconSpark({ title = 'Signal', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 1.1, ease: 'easeOut' }}
       />
-      <motion.circle
+      <circle
         cx="10"
         cy="24"
         r="2"
         fill="currentColor"
         stroke="none"
-        animate={{ scale: [1, 1.3, 1] }}
-        transition={{ duration: 1.4, repeat: Infinity }}
+        className="ai-loop ai-scale"
+        style={loop({ d: 1.4, s: 1.3 })}
       />
-      <motion.circle
+      <circle
         cx="38"
         cy="28"
         r="2"
         fill="currentColor"
         stroke="none"
-        animate={{ scale: [1, 1.3, 1] }}
-        transition={{ duration: 1.4, repeat: Infinity, delay: 0.4 }}
+        className="ai-loop ai-scale"
+        style={loop({ d: 1.4, delay: 0.4, s: 1.3 })}
       />
     </svg>
   )
@@ -331,7 +355,7 @@ export function IconMail({ title = 'Email', ...props }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
       <title>{title}</title>
-      <motion.rect
+      <m.rect
         x="8"
         y="14"
         width="32"
@@ -342,7 +366,7 @@ export function IconMail({ title = 'Email', ...props }: IconProps) {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
       />
-      <motion.path
+      <m.path
         d="M10 16l14 11L38 16"
         {...base}
         initial={{ pathLength: 0 }}
@@ -350,14 +374,14 @@ export function IconMail({ title = 'Email', ...props }: IconProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2 }}
       />
-      <motion.circle
+      <circle
         cx="34"
         cy="30"
         r="1.5"
         fill="currentColor"
         stroke="none"
-        animate={{ opacity: [0.2, 1, 0.2] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="ai-loop ai-fade"
+        style={loop({ d: 2, o0: 0.2 })}
       />
     </svg>
   )

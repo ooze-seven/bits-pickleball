@@ -4,6 +4,7 @@ import { Button } from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
 import { IconClock, IconMail, IconPin } from '../components/icons/AnimatedIcons'
 import { contact } from '../data/site'
+import { images } from '../data/images'
 import './pages.css'
 
 export function Contact() {
@@ -20,7 +21,7 @@ export function Contact() {
         eyebrow="Contact"
         title="Book a visit. Ask anything."
         lead="Message us about open play, membership, or coaching — we’re in Hi-ka, Compostela, Cebu."
-        image="/images/club-lounge.jpg"
+        image={images.clubLounge}
         imageAlt="Club lounge seating area"
       />
 
@@ -146,7 +147,7 @@ export function Contact() {
         <div className="container">
           <Reveal>
             <div className="gallery-item contact-wide-shot">
-              <img src="/images/night-courts.jpg" alt="Evening courts ready for play" />
+              <img {...images.nightCourts} alt="Evening courts ready for play" />
             </div>
           </Reveal>
         </div>

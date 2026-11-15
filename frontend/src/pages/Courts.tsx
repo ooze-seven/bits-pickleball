@@ -3,6 +3,7 @@ import { Button } from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
 import { IconClock, IconCourt, IconSpark } from '../components/icons/AnimatedIcons'
 import { courtFeatures } from '../data/site'
+import { images } from '../data/images'
 import './pages.css'
 
 export function Courts() {
@@ -12,7 +13,7 @@ export function Courts() {
         eyebrow="Courts"
         title="Six lanes. Clean bounce. Night glow."
         lead="Outdoor courts in Hi-ka, Compostela — tuned for Cebu heat, daily open play, and LED night sessions."
-        image="/images/courts-overview.jpg"
+        image={images.courtsOverview}
         imageAlt="Overview of outdoor pickleball courts"
         actions={
           <>
@@ -47,7 +48,7 @@ export function Courts() {
       <section className="section light-surface">
         <div className="container split">
           <Reveal className="split-media">
-            <img src="/images/night-courts.jpg" alt="Pickleball courts under evening lights" />
+            <img {...images.nightCourts} alt="Pickleball courts under evening lights" />
           </Reveal>
           <Reveal className="split-copy" delay={0.1}>
             <p className="eyebrow">Night play</p>
@@ -84,13 +85,13 @@ export function Courts() {
           </Reveal>
           <div className="gallery-grid">
             <Reveal className="gallery-item">
-              <img src="/images/club-lounge.jpg" alt="Club lounge with green accent wall" />
+              <img {...images.clubLounge} alt="Club lounge with green accent wall" />
             </Reveal>
             <Reveal className="gallery-item" delay={0.08}>
-              <img src="/images/paddle-detail.jpg" alt="Paddle and pickleball on court" />
+              <img {...images.paddleDetail} alt="Paddle and pickleball on court" />
             </Reveal>
             <Reveal className="gallery-item" delay={0.14}>
-              <img src="/images/gear-flatlay.jpg" alt="Pickleball gear arranged on a table" />
+              <img {...images.gearFlatlay} alt="Pickleball gear arranged on a table" />
             </Reveal>
           </div>
         </div>

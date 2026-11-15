@@ -2,6 +2,7 @@ import { PageHero } from '../components/ui/PageHero'
 import { Button } from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
 import { IconCommunity, IconSpark } from '../components/icons/AnimatedIcons'
+import { images } from '../data/images'
 import './pages.css'
 
 export function About() {
@@ -11,7 +12,7 @@ export function About() {
         eyebrow="About"
         title="Clubhouse energy. Bits precision."
         lead="BitsPickleball in Hi-ka, Compostela, Cebu — make pickleball feel premium without making it precious."
-        image="/images/club-entrance.jpg"
+        image={images.clubEntrance}
         imageAlt="BitsPickleball club entrance"
         actions={
           <Button to="/contact" variant="primary">
@@ -31,7 +32,7 @@ export function About() {
             </p>
           </Reveal>
           <Reveal className="split-media" delay={0.1}>
-            <img src="/images/gear-flatlay.jpg" alt="Club gear laid out on wood" />
+            <img {...images.gearFlatlay} alt="Club gear laid out on wood" />
           </Reveal>
         </div>
       </section>
@@ -74,7 +75,7 @@ export function About() {
         <div className="container split reverse">
           <Reveal className="split-media">
             <img
-              src="/images/community-celebrate.jpg?v=fil"
+              {...images.communityCelebrate}
               alt="Members celebrating after a point"
             />
           </Reveal>

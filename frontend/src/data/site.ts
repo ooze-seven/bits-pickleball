@@ -1,3 +1,5 @@
+import { images } from './images'
+
 export const navLinks = [
   { to: '/courts', label: 'Courts' },
   { to: '/programs', label: 'Programs' },
@@ -27,21 +29,21 @@ export const programs = [
     title: 'Open Play',
     copy: 'Rotating courts, fair stacking, and skill-banded sessions so every rally stays sharp — morning to night in Compostela.',
     detail: 'Walk-in · Daily',
-    image: '/images/players-rally.jpg?v=fil',
+    image: images.playersRally,
   },
   {
     id: 'clinics',
     title: 'Skill Clinics',
     copy: 'Short, focused sessions on dinks, resets, third shots, and transition footwork with local coaches.',
     detail: '₱450 · 45–60 min',
-    image: '/images/coaching-session.jpg?v=fil',
+    image: images.coachingSession,
   },
   {
     id: 'private',
     title: 'Private Coaching',
     copy: 'One-on-one or partner sessions built around your goals, not a generic ladder.',
     detail: 'From ₱800 / session',
-    image: '/images/paddle-detail.jpg',
+    image: images.paddleDetail,
   },
 ]
 
