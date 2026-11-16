@@ -1,6 +1,25 @@
 import { m } from 'framer-motion'
-import type { CSSProperties, SVGProps } from 'react'
+import { useEffect, useRef, type CSSProperties, type SVGProps } from 'react'
+import { watchVisibility } from '../../lib/visibility'
 import './AnimatedIcons.css'
+
+/**
+ * Pauses an icon's looping CSS animations while it is off screen, so hidden
+ * icons don't keep the browser busy every frame. Sets a data attribute
+ * directly instead of React state, so nothing re-renders while scrolling.
+ */
+function usePauseOffscreen() {
+  const ref = useRef<SVGSVGElement>(null)
+  useEffect(() => {
+    const svg = ref.current
+    if (!svg) return
+    return watchVisibility(svg, (visible) => {
+      if (visible) svg.removeAttribute('data-offscreen')
+      else svg.setAttribute('data-offscreen', '')
+    })
+  }, [])
+  return ref
+}
 
 type IconProps = SVGProps<SVGSVGElement> & { title?: string }
 
@@ -40,8 +59,9 @@ const base = {
 }
 
 export function IconCourt({ title = 'Courts', ...props }: IconProps) {
+  const ref = usePauseOffscreen()
   return (
-    <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
+    <svg viewBox="0 0 48 48" className="anim-icon" {...props} ref={ref}>
       <title>{title}</title>
       <m.rect
         x="6"
@@ -92,8 +112,9 @@ export function IconCourt({ title = 'Courts', ...props }: IconProps) {
 }
 
 export function IconCoaching({ title = 'Coaching', ...props }: IconProps) {
+  const ref = usePauseOffscreen()
   return (
-    <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
+    <svg viewBox="0 0 48 48" className="anim-icon" {...props} ref={ref}>
       <title>{title}</title>
       <m.path
         d="M16 34c2.5-4 6-6 8-6s5.5 2 8 6"
@@ -137,8 +158,9 @@ export function IconCoaching({ title = 'Coaching', ...props }: IconProps) {
 }
 
 export function IconCommunity({ title = 'Community', ...props }: IconProps) {
+  const ref = usePauseOffscreen()
   return (
-    <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
+    <svg viewBox="0 0 48 48" className="anim-icon" {...props} ref={ref}>
       <title>{title}</title>
       <m.circle
         cx="18"
@@ -190,8 +212,9 @@ export function IconCommunity({ title = 'Community', ...props }: IconProps) {
 }
 
 export function IconClock({ title = 'Hours', ...props }: IconProps) {
+  const ref = usePauseOffscreen()
   return (
-    <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
+    <svg viewBox="0 0 48 48" className="anim-icon" {...props} ref={ref}>
       <title>{title}</title>
       <m.circle
         cx="24"
@@ -227,8 +250,9 @@ export function IconClock({ title = 'Hours', ...props }: IconProps) {
 }
 
 export function IconPin({ title = 'Location', ...props }: IconProps) {
+  const ref = usePauseOffscreen()
   return (
-    <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
+    <svg viewBox="0 0 48 48" className="anim-icon" {...props} ref={ref}>
       <title>{title}</title>
       <m.path
         d="M24 8c-7 0-12 5.2-12 12.2C12 29 24 40 24 40s12-11 12-19.8C36 13.2 31 8 24 8z"
@@ -260,8 +284,9 @@ export function IconPin({ title = 'Location', ...props }: IconProps) {
 }
 
 export function IconMembership({ title = 'Membership', ...props }: IconProps) {
+  const ref = usePauseOffscreen()
   return (
-    <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
+    <svg viewBox="0 0 48 48" className="anim-icon" {...props} ref={ref}>
       <title>{title}</title>
       <m.rect
         x="8"
@@ -318,8 +343,9 @@ export function IconMembership({ title = 'Membership', ...props }: IconProps) {
 }
 
 export function IconSpark({ title = 'Signal', ...props }: IconProps) {
+  const ref = usePauseOffscreen()
   return (
-    <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
+    <svg viewBox="0 0 48 48" className="anim-icon" {...props} ref={ref}>
       <title>{title}</title>
       <m.path
         d="M10 24h6l3-8 5 16 4-10 3 6h7"
@@ -352,8 +378,9 @@ export function IconSpark({ title = 'Signal', ...props }: IconProps) {
 }
 
 export function IconMail({ title = 'Email', ...props }: IconProps) {
+  const ref = usePauseOffscreen()
   return (
-    <svg viewBox="0 0 48 48" className="anim-icon" {...props}>
+    <svg viewBox="0 0 48 48" className="anim-icon" {...props} ref={ref}>
       <title>{title}</title>
       <m.rect
         x="8"

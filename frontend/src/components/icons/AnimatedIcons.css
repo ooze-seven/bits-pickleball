@@ -87,6 +87,12 @@
   }
 }
 
+/* Set by usePauseOffscreen() in AnimatedIcons.tsx while the icon is off screen. */
+.anim-icon[data-offscreen] .ai-loop,
+.anim-icon[data-offscreen] .ai-clock-hand {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ai-loop,
   .ai-clock-hand {

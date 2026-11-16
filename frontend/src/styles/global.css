@@ -42,38 +42,41 @@ html.is-preloading body {
   overflow: hidden;
 }
 
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
 body {
   margin: 0;
   min-width: 320px;
   font-family: var(--font-body);
   font-optical-sizing: auto;
   color: var(--cream);
-  background:
-    radial-gradient(1200px 700px at 85% -10%, rgba(93, 138, 100, 0.28), transparent 55%),
-    radial-gradient(900px 500px at -10% 20%, rgba(61, 97, 68, 0.45), transparent 50%),
-    linear-gradient(165deg, var(--green-950), var(--green-900) 42%, #1a2920);
-  background-attachment: fixed;
+  background: var(--green-950);
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-body::before {
+/* The page backdrop lives on two fixed layers instead of a
+   `background-attachment: fixed` body background. A fixed body background
+   forces the whole screen to repaint on every scroll frame; fixed layers are
+   painted once and left in place by the compositor. */
+body::before,
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
+}
+
+body::before {
+  background:
+    radial-gradient(1200px 700px at 85% -10%, rgba(93, 138, 100, 0.28), transparent 55%),
+    radial-gradient(900px 500px at -10% 20%, rgba(61, 97, 68, 0.45), transparent 50%),
+    linear-gradient(165deg, var(--green-950), var(--green-900) 42%, #1a2920);
+}
+
+body::after {
   opacity: 0.35;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),

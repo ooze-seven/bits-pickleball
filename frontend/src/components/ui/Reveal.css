@@ -1,0 +1,22 @@
+/* Scroll-in reveal driven by Reveal.tsx. Only opacity and transform change, so
+   the transition runs on the compositor. */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 36px), 0);
+  transition:
+    opacity 0.8s var(--ease-out) var(--reveal-delay, 0s),
+    transform 0.8s var(--ease-out) var(--reveal-delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

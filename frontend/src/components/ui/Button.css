@@ -42,10 +42,13 @@
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.06);
+  /* A dark tint under a light wash stands in for the old blur: a backdrop blur
+     over the parallax hero photos had to be redone on every scroll frame. */
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)),
+    rgba(20, 32, 24, 0.38);
   color: var(--cream);
   border: 1px solid var(--line);
-  backdrop-filter: blur(8px);
 }
 
 .btn-dark {

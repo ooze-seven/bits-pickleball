@@ -11,6 +11,8 @@
   position: absolute;
   inset: -8% 0 0;
   z-index: -1;
+  /* Moved on scroll by PageHero.tsx; its own layer means it is only moved, not repainted. */
+  will-change: transform;
 }
 
 .page-hero-media img {
@@ -29,6 +31,8 @@
 
 .page-hero-content {
   padding: calc(var(--header-h) + 4.5rem) 0 4.5rem;
+  /* Faded on scroll; kept on its own layer so the text shadows aren't repainted. */
+  will-change: opacity;
 }
 
 .page-hero-title {

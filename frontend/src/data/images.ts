@@ -1,6 +1,6 @@
 // Every image the site shows. The files in src/assets/ are generated from
 // assets-src/ by `npm run images`; importing them gives Vite content-hashed URLs.
-// Spread an entry onto an <img> to set src, width and height together.
+// Spread an entry onto an <img> to set src, width, height and async decoding together.
 import clubEntrance from '../assets/images/club-entrance.webp'
 import clubLounge from '../assets/images/club-lounge.webp'
 import coachingSession from '../assets/images/coaching-session.webp'
@@ -15,10 +15,17 @@ import playersRally from '../assets/images/players-rally.webp'
 import brandMark from '../assets/brand/mark.webp'
 import brandWordmark from '../assets/brand/wordmark.webp'
 
-export type SiteImage = { src: string; width: number; height: number }
+export type SiteImage = { src: string; width: number; height: number; decoding: 'async' }
 
-const landscape = (src: string): SiteImage => ({ src, width: 1280, height: 720 })
-const fourByThree = (src: string): SiteImage => ({ src, width: 1152, height: 864 })
+const image = (src: string, width: number, height: number): SiteImage => ({
+  src,
+  width,
+  height,
+  decoding: 'async',
+})
+
+const landscape = (src: string) => image(src, 1280, 720)
+const fourByThree = (src: string) => image(src, 1152, 864)
 
 export const images = {
   clubEntrance: landscape(clubEntrance),
@@ -28,13 +35,13 @@ export const images = {
   courtsOverview: landscape(courtsOverview),
   gearFlatlay: fourByThree(gearFlatlay),
   heroCourt: landscape(heroCourt),
-  memberPortrait: { src: memberPortrait, width: 864, height: 1152 },
+  memberPortrait: image(memberPortrait, 864, 1152),
   nightCourts: landscape(nightCourts),
-  paddleDetail: { src: paddleDetail, width: 1024, height: 1024 },
+  paddleDetail: image(paddleDetail, 1024, 1024),
   playersRally: fourByThree(playersRally),
 } satisfies Record<string, SiteImage>
 
 export const brand = {
-  mark: { src: brandMark, width: 251, height: 320 },
-  wordmark: { src: brandWordmark, width: 856, height: 191 },
+  mark: image(brandMark, 251, 320),
+  wordmark: image(brandWordmark, 856, 191),
 } satisfies Record<string, SiteImage>

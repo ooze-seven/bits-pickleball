@@ -8,9 +8,9 @@
 }
 
 .site-header.is-solid {
-  /* Mostly opaque with a light blur: a big blur re-renders on every scroll frame. */
-  background: rgba(28, 46, 34, 0.92);
-  backdrop-filter: blur(6px);
+  /* Near-opaque instead of blurred: a backdrop blur on a fixed header is redone
+     on every scroll frame, and at this opacity it was barely visible. */
+  background: rgba(28, 46, 34, 0.95);
   border-bottom-color: var(--line);
 }
 

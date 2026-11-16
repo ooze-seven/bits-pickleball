@@ -2,11 +2,11 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { AnimatePresence, m } from 'framer-motion'
 import { Header } from './Header'
 import { Footer } from './Footer'
-import { useLenis } from '../../hooks/useLenis'
+import { useScrollToTop } from '../../hooks/useScrollToTop'
 import './Layout.css'
 
 export function Layout() {
-  useLenis()
+  useScrollToTop()
   const location = useLocation()
 
   return (

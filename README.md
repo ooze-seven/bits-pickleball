@@ -12,7 +12,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/stack-React%20%2B%20TypeScript-3D6144?style=for-the-badge" alt="React + TypeScript" />
   <img src="https://img.shields.io/badge/build-Vite-4A7352?style=for-the-badge" alt="Vite" />
-  <img src="https://img.shields.io/badge/motion-Framer%20%2B%20Lenis-5D8A64?style=for-the-badge" alt="Framer Motion + Lenis" />
+  <img src="https://img.shields.io/badge/motion-Framer%20Motion-5D8A64?style=for-the-badge" alt="Framer Motion" />
   <img src="https://img.shields.io/badge/location-Compostela%2C%20Cebu-243828?style=for-the-badge" alt="Compostela, Cebu" />
 </p>
 
@@ -74,7 +74,7 @@
 | --- | --- |
 | **Pages** | Home, Courts, Programs, Membership, About, Contact |
 | **Motion** | Framer Motion reveals + independently animated SVG icons |
-| **Scroll** | Lenis smooth scrolling and route transitions |
+| **Scroll** | Native scrolling, scroll-in reveals and route transitions |
 | **Brand** | Official BitsPickleball mark + wordmark |
 | **Locale** | Hi-ka, Compostela, Cebu · PHP pricing · PH contact format |
 | **Backend** | Placeholder folder ready for the upcoming API |
@@ -128,7 +128,6 @@ Then open [http://localhost:5173](http://localhost:5173).
 - **Vite 8**
 - **React Router**
 - **Framer Motion**
-- **Lenis**
 - **Syne** + **Outfit** variable fonts
 
 ---

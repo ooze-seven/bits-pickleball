@@ -1,5 +1,6 @@
-import { m, useReducedMotion } from 'framer-motion'
-import type { ReactNode } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { watchVisibility } from '../../lib/visibility'
+import './Reveal.css'
 
 type RevealProps = {
   children: ReactNode
@@ -9,6 +10,11 @@ type RevealProps = {
   once?: boolean
 }
 
+/**
+ * Fades and slides its children in when they scroll into view. The motion is a
+ * CSS transition (see Reveal.css), so the browser runs it off the main thread
+ * and it can't stall scrolling.
+ */
 export function Reveal({
   children,
   className = '',
@@ -16,21 +22,36 @@ export function Reveal({
   y = 36,
   once = true,
 }: RevealProps) {
-  const reduce = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
 
-  if (reduce) {
-    return <div className={className}>{children}</div>
-  }
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+    const stop = watchVisibility(
+      element,
+      (isVisible) => {
+        if (isVisible) {
+          setVisible(true)
+          if (once) stop()
+        } else if (!once) {
+          setVisible(false)
+        }
+      },
+      '-8% 0px',
+    )
+    return stop
+  }, [once])
+
+  const style = { '--reveal-y': `${y}px`, '--reveal-delay': `${delay}s` } as CSSProperties
 
   return (
-    <m.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: '-8% 0px' }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      ref={ref}
+      className={`reveal ${visible ? 'is-visible' : ''} ${className}`.trim()}
+      style={style}
     >
       {children}
-    </m.div>
+    </div>
   )
 }

@@ -8,6 +8,7 @@ import './styles/global.css'
 import './components/brand/Logo.css'
 import './components/icons/AnimatedIcons.css'
 import './components/ui/Button.css'
+import './components/ui/Reveal.css'
 import './components/loading/AppLoader.css'
 import App from './App'
 
