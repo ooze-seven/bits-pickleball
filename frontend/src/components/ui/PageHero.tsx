@@ -1,5 +1,6 @@
 import { m, useScroll, useTransform } from 'framer-motion'
 import { useRef, type ReactNode } from 'react'
+import { useEntranceInitial } from '../../lib/pageEntrance'
 import type { SiteImage } from '../../data/images'
 import './PageHero.css'
 
@@ -21,6 +22,7 @@ export function PageHero({
   actions,
 }: PageHeroProps) {
   const ref = useRef<HTMLElement>(null)
+  const enter = useEntranceInitial()
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -37,7 +39,7 @@ export function PageHero({
       <m.div className="page-hero-content container" style={{ opacity: fade }}>
         <m.p
           className="eyebrow"
-          initial={{ opacity: 0, y: 16 }}
+          initial={enter({ opacity: 0, y: 16 })}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -45,7 +47,7 @@ export function PageHero({
         </m.p>
         <m.h1
           className="display page-hero-title"
-          initial={{ opacity: 0, y: 28 }}
+          initial={enter({ opacity: 0, y: 28 })}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -53,7 +55,7 @@ export function PageHero({
         </m.h1>
         <m.p
           className="lead"
-          initial={{ opacity: 0, y: 20 }}
+          initial={enter({ opacity: 0, y: 20 })}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.18 }}
         >
@@ -62,7 +64,7 @@ export function PageHero({
         {actions ? (
           <m.div
             className="btn-row page-hero-actions"
-            initial={{ opacity: 0, y: 16 }}
+            initial={enter({ opacity: 0, y: 16 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.28 }}
           >

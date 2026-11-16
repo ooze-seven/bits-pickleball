@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { usePageEntrance } from '../../lib/pageEntrance'
 import { watchVisibility } from '../../lib/visibility'
 import './Reveal.css'
 
@@ -23,11 +24,13 @@ export function Reveal({
   once = true,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
+  // Coming back to a page with back/forward: show it as it was, no replay.
+  const { returning } = usePageEntrance()
+  const [visible, setVisible] = useState(returning)
 
   useEffect(() => {
     const element = ref.current
-    if (!element) return
+    if (!element || (returning && once)) return
     const stop = watchVisibility(
       element,
       (isVisible) => {
@@ -41,7 +44,7 @@ export function Reveal({
       '-8% 0px',
     )
     return stop
-  }, [once])
+  }, [once, returning])
 
   const style = { '--reveal-y': `${y}px`, '--reveal-delay': `${delay}s` } as CSSProperties
 

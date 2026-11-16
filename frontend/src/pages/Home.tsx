@@ -1,5 +1,6 @@
 import { m, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import { useEntranceInitial } from '../lib/pageEntrance'
 import { Button } from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
 import {
@@ -15,6 +16,7 @@ import './pages.css'
 
 export function Home() {
   const heroRef = useRef<HTMLElement>(null)
+  const enter = useEntranceInitial()
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -38,13 +40,13 @@ export function Home() {
             className="home-brand-wordmark"
             {...brand.wordmark}
             alt="BitsPickleball"
-            initial={{ opacity: 0, y: 18 }}
+            initial={enter({ opacity: 0, y: 18 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           />
 
           <m.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={enter({ opacity: 0, y: 30 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -53,7 +55,7 @@ export function Home() {
 
           <m.p
             className="lead"
-            initial={{ opacity: 0, y: 20 }}
+            initial={enter({ opacity: 0, y: 20 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.18 }}
           >
@@ -64,7 +66,7 @@ export function Home() {
           <m.div
             className="btn-row"
             style={{ marginTop: '1.6rem' }}
-            initial={{ opacity: 0, y: 16 }}
+            initial={enter({ opacity: 0, y: 16 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.28 }}
           >
