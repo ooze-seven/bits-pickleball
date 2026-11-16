@@ -55,6 +55,11 @@
   place-content: center;
   gap: 6px;
   background: rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+.nav-toggle:active {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .nav-toggle span {
@@ -95,6 +100,16 @@
   font-weight: 680;
   letter-spacing: -0.03em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Press feedback in place of the browser's tap highlight. */
+.mobile-nav a:active {
+  opacity: 0.6;
+}
+
+.mobile-nav a.active {
+  color: var(--green-200);
 }
 
 .mobile-nav .btn-wrap-fill {

@@ -35,6 +35,9 @@
 
 html {
   scroll-behavior: auto;
+  /* Turn off the browser's blue tap flash on phones; links and buttons have
+     their own press feedback. Keyboard focus outlines are unaffected. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 html.is-preloading,
