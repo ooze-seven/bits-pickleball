@@ -49,13 +49,13 @@ export function useAppPreload(): PreloadState {
     const startedAt = performance.now()
 
     const tasks: Array<{ label: string; run: () => Promise<void> }> = [
-      { label: 'Loading type', run: waitForFonts },
-      { label: 'Bootstrapping pages', run: () => Promise.all(PRELOAD_ROUTES.map((load) => load())).then(() => undefined) },
+      { label: 'Lacing up', run: waitForFonts },
+      { label: 'Marking the lines', run: () => Promise.all(PRELOAD_ROUTES.map((load) => load())).then(() => undefined) },
       ...PRELOAD_IMAGES.map((src) => ({
-        label: 'Caching imagery',
+        label: 'Lighting the courts',
         run: () => loadImage(src),
       })),
-      { label: 'Final polish', run: waitForWindowLoad },
+      { label: 'Final touches', run: waitForWindowLoad },
     ]
 
     const total = tasks.length
