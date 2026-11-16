@@ -80,8 +80,10 @@
   animation: loader-ring 1.8s ease-out infinite;
 }
 
+/* The name only (the big mark above is the logo). Sized so the lettering
+   matches its size in the full wordmark: 659/856 of the old 280px / 78vw. */
 .app-loader-wordmark {
-  width: min(280px, 78vw);
+  width: min(216px, 60vw);
   height: auto;
   display: block;
   margin-top: 0.2rem;

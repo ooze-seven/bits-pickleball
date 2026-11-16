@@ -14,6 +14,7 @@ import paddleDetail from '../assets/images/paddle-detail.webp'
 import playersRally from '../assets/images/players-rally.webp'
 import brandMark from '../assets/brand/mark.webp'
 import brandWordmark from '../assets/brand/wordmark.webp'
+import brandWordmarkText from '../assets/brand/wordmark-text.webp'
 
 export type SiteImage = { src: string; width: number; height: number }
 
@@ -43,4 +44,6 @@ export const images = {
 export const brand = {
   mark: image(brandMark, 251, 320),
   wordmark: image(brandWordmark, 856, 191),
+  /** The name alone, for places that already show the mark (loading screen). */
+  wordmarkText: image(brandWordmarkText, 659, 191),
 } satisfies Record<string, SiteImage>

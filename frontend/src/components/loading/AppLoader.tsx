@@ -40,7 +40,7 @@ export function AppLoader({ state }: AppLoaderProps) {
             </m.div>
 
             <m.img
-              {...brand.wordmark}
+              {...brand.wordmarkText}
               alt="BitsPickleball"
               className="app-loader-wordmark"
               initial={{ opacity: 0, y: 12 }}

@@ -4,6 +4,7 @@ import { brand, images } from './images'
 export const PRELOAD_IMAGES = [
   brand.mark.src,
   brand.wordmark.src,
+  brand.wordmarkText.src,
   images.heroCourt.src,
   images.courtsOverview.src,
   images.playersRally.src,

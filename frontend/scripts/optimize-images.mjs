@@ -19,6 +19,39 @@ async function report(from, to) {
   )
 }
 
+/**
+ * Finds the first column of the wordmark's lettering: the end of the first
+ * empty gap after the mark, which is the widest gap in the image.
+ */
+async function lettering_start(file) {
+  const { data, info } = await sharp(file)
+    .ensureAlpha()
+    .extractChannel(3)
+    .raw()
+    .toBuffer({ resolveWithObject: true })
+  const { width, height } = info
+  const inked = (x) => {
+    for (let y = 0; y < height; y++) if (data[y * width + x] > 16) return true
+    return false
+  }
+  let best = { start: 0, length: 0 }
+  let gapStart = -1
+  let seenInk = false
+  for (let x = 0; x < width; x++) {
+    if (inked(x)) {
+      if (seenInk && gapStart >= 0 && x - gapStart > best.length) {
+        best = { start: gapStart, length: x - gapStart }
+      }
+      seenInk = true
+      gapStart = -1
+    } else if (seenInk && gapStart < 0) {
+      gapStart = x
+    }
+  }
+  if (!best.length) throw new Error(`No gap between mark and lettering in ${file}`)
+  return best.start + best.length
+}
+
 async function photos() {
   await mkdir(out('images'), { recursive: true })
   const files = (await readdir(src('images'))).filter((f) => /\.(jpe?g|png)$/i.test(f))
@@ -46,6 +79,18 @@ async function brand() {
     .webp({ quality: 90, alphaQuality: 100, effort: 6 })
     .toFile(out('brand', 'wordmark.webp'))
   await report(src('brand', 'wordmark-transparent.png'), out('brand', 'wordmark.webp'))
+
+  // Lettering only (the wordmark minus its leading mark), for the loading
+  // screen, which already shows the big mark above it. Keeps the wordmark's
+  // full height so the lettering sits with the same spacing as before.
+  const wordmarkSrc = src('brand', 'wordmark-transparent.png')
+  const textLeft = await lettering_start(wordmarkSrc)
+  const { width: wmWidth, height: wmHeight } = await sharp(wordmarkSrc).metadata()
+  await sharp(wordmarkSrc)
+    .extract({ left: textLeft, top: 0, width: wmWidth - textLeft, height: wmHeight })
+    .webp({ quality: 90, alphaQuality: 100, effort: 6 })
+    .toFile(out('brand', 'wordmark-text.webp'))
+  await report(wordmarkSrc, out('brand', 'wordmark-text.webp'))
 
   // Favicon: the mark centred on a transparent 64x64 square.
   await sharp(src('brand', 'mark-transparent.png'))
