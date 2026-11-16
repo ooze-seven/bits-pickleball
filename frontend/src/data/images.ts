@@ -1,6 +1,6 @@
 // Every image the site shows. The files in src/assets/ are generated from
 // assets-src/ by `npm run images`; importing them gives Vite content-hashed URLs.
-// Spread an entry onto an <img> to set src, width, height and async decoding together.
+// Spread an entry onto an <img> to set src, width and height together.
 import clubEntrance from '../assets/images/club-entrance.webp'
 import clubLounge from '../assets/images/club-lounge.webp'
 import coachingSession from '../assets/images/coaching-session.webp'
@@ -15,13 +15,12 @@ import playersRally from '../assets/images/players-rally.webp'
 import brandMark from '../assets/brand/mark.webp'
 import brandWordmark from '../assets/brand/wordmark.webp'
 
-export type SiteImage = { src: string; width: number; height: number; decoding: 'async' }
+export type SiteImage = { src: string; width: number; height: number }
 
 const image = (src: string, width: number, height: number): SiteImage => ({
   src,
   width,
   height,
-  decoding: 'async',
 })
 
 const landscape = (src: string) => image(src, 1280, 720)
