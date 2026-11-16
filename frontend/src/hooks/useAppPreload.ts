@@ -7,7 +7,8 @@ export type PreloadState = {
   label: string
 }
 
-const MIN_DISPLAY_MS = 1600
+/** The loading curtain always stays up at least this long, even when everything is cached. */
+const MIN_DISPLAY_MS = 3000
 
 function loadImage(src: string): Promise<void> {
   return new Promise((resolve) => {
